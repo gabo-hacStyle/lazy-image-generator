@@ -14,7 +14,7 @@ type ImageItem = {id: string, url: string}
 export default function Home() {
   const [images, setImages] = useState<Array<ImageItem>>([])
 
-  const addNewfox: MouseEventHandler<HTMLButtonElement> = (e) => {
+  const addNewImage: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
     const newImageItem:ImageItem = {
       id: generateId(),
@@ -26,20 +26,23 @@ export default function Home() {
     ])
   }
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <>
+      <nav className='fixed text-center bg-dark-orange w-full text- rounded pt-6'>
+          <h1 className="text-5xl text-light-yellow">
+            Random <b className='text-black'>Fox</b> generator
+          </h1>
+
+          <button 
+            className='p-1 bg-light-yellow mt-6 mb-2 rounded p-1 pr-2 pl-2 text-black'
+            onClick={addNewImage}> See a new fox!</button>
+      </nav>
+
+      <main className="flex min-h-screen flex-col items-center justify-between p-24 pt-32">
   
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <h1 className="text-5xl underline">
-          Random Fox generator
-        </h1>
-        <button
-          onClick={addNewfox}  
-        >
-
-          See a new fox!
-
-        </button>
+        
+      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-3 lg:text-left">
+        
+        
         {
           images.map(({id, url}) => (
             <div className="p-4"
@@ -58,6 +61,8 @@ export default function Home() {
         }
         
       </div>
-    </main>
+      </main>
+    </>
+    
   )
 }
