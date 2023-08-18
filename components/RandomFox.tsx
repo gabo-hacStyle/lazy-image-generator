@@ -1,8 +1,17 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
+import type {ImgHTMLAttributes} from 'react'
 
-type Props = { image: string}
-export const RandomFox = ({image} : Props): JSX.Element => {
-    
+type LazyImageProps = { 
+        src: string,
+    }
+type ImageNative = ImgHTMLAttributes<HTMLImageElement>;
+
+type Props = LazyImageProps & ImageNative
+
+export const LazyImage = ({src, ...imageProps} : Props): JSX.Element => {
+    const [currentSrc, setCurrentSrc] = useState(
+        "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjMyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
+    )
     const node = useRef<HTMLImageElement>(null)
     useEffect(() => {
         //New observer
@@ -10,6 +19,7 @@ export const RandomFox = ({image} : Props): JSX.Element => {
             entries.forEach((entry) => {
                 if(entry.isIntersecting){
                     console.log('Hey')
+                    setCurrentSrc(src)
                 }
             })
         })
@@ -23,16 +33,14 @@ export const RandomFox = ({image} : Props): JSX.Element => {
         return () => {
             observer.disconnect()
         }
-    }, [])
+    }, [src])
     
 
     return (
         <img 
             ref={node}
-            src={image} 
-            width={320}
-            height="auto"
-            className="rounded"
+            src={currentSrc} 
+            {...imageProps}
         />
     )
 }
