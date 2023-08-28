@@ -64,7 +64,7 @@ content: [
 
 ## How it Works
 
-The app uses the [randomfox.ca](https://randomfox.ca) public API to display random fox images. Images are loaded lazily, improving app performance. A new image container is added to the HTML when the user taps a button. The image is then loaded and rendered only when it enters the viewport.
+The app uses - as an example - the [randomfox.ca](https://randomfox.ca) public API to display random fox images. Images are loaded lazily, improving app performance. A new image container is added to the HTML when the user taps a button. The image is then loaded and rendered only when it enters the viewport.
 
 ## Components
 
