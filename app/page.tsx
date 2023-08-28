@@ -1,7 +1,7 @@
 'use client'
 import {useState} from 'react'
 import type { MouseEventHandler } from 'react';
-import { LazyImage } from "@/components/RandomFox"
+import { LazyImage } from "@/components/RandomImage"
 
 //Generates a random numer from 1 - 123 to get the foxes
 const random = () => Math.floor(Math.random() * 123)+ 1 ;
